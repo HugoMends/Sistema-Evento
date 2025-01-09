@@ -9,23 +9,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_participantes")
-public class Participantes {
+@Table(name = "tb_atividade")
+public class Atividade {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String name;
-	private String email;
+	private String descricao;
+	private double preco;
 	
-	public Participantes() {
+	public Atividade() {
 	}
 
-	public Participantes(Long id, String name, String email) {
+	public Atividade(Long id, String name, String descricao, double preco) {
 		this.id = id;
 		this.name = name;
-		this.email = email;
+		this.descricao = descricao;
+		this.preco = preco;
 	}
 
 	public Long getId() {
@@ -44,12 +45,20 @@ public class Participantes {
 		this.name = name;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 
 	@Override
@@ -65,10 +74,9 @@ public class Participantes {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Participantes other = (Participantes) obj;
+		Atividade other = (Atividade) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 	
 	
 }
