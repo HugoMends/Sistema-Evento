@@ -4,23 +4,36 @@ import java.time.Instant;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_bloco")
 public class Bloco {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Instant inicio;
 	private Instant fim;
 	
+	@ManyToOne
+	@JoinColumn(name = "atividade_id")
+	private Atividade atv;
+	
 	public Bloco() {
 	}
 
-	public Bloco(Long id, Instant inicio, Instant fim) {
+	public Bloco(Long id, Instant inicio, Instant fim, Atividade atv) {
 		this.id = id;
 		this.inicio = inicio;
 		this.fim = fim;
+		this.atv = atv;
+		
 	}
 
 	public Long getId() {
@@ -45,6 +58,15 @@ public class Bloco {
 
 	public void setFim(Instant fim) {
 		this.fim = fim;
+	}
+	
+
+	public Atividade getAtividade() {
+		return atv;
+	}
+
+	public void setAtividade(Atividade atividade) {
+		this.atv = atividade;
 	}
 
 	@Override
